@@ -2,10 +2,34 @@ import React,{useState} from "react"
 import people from "./data"
 import {FaChevronLeft,FaChevronRight,FaQuoteRight} from "react-icons/fa"
 
+
+
 const Review =()=>{
     const [index,setIndex]=useState(0)
-    const {id,image,job,name,text} = people[index]
-    
+    const {name,job,image,text} = people[index]  
+
+    const prevPerson = ()=>{
+        setIndex((index)=>{
+            let newIndex = index  - 1
+            return checkNum(newIndex)
+        })
+    } 
+const nextPerson = ()=>{
+        setIndex((index)=>{
+            let newIndex = index  + 1
+            return checkNum(newIndex) 
+        })
+    } 
+
+const checkNum = (number)=>{
+    if(number < 0){
+        return people.length - 1
+    }
+    if (number > people.length - 1){
+        return 0
+    }
+    return number
+}
 
     return <article className="review">
             <div className="img-container">
@@ -15,20 +39,27 @@ const Review =()=>{
                 </span>
 
             </div>
-             <h4 className="author">{name}</h4>
-             <p className="job">{job}</p>
-             <p className="info">{text}</p>
-             <div className="button-container">
-                 <button className="prev-btn">
-                     <FaChevronLeft/>
-                 </button>
-                 <button className="next-btn">
-                     <FaChevronRight/>
-                 </button>
-             </div>
-                 <button className="random-btn">Random</button>
-             
+            <h4 className="author">{name}</h4>
+            <p className="job">{job}</p>
+            <p className="info">{text}</p>
+            
+            <div className="button-container">
+                
+                <button className="prev-btn" onClick={prevPerson}>
+                    <FaChevronLeft/>
+                </button>
+               
+                <button className="next-btn" onClick={nextPerson}>
+                    <FaChevronRight/>
+                </button> 
+            
+            </div>
+                
+                
+            
+
     </article>
     
+
 }
 export default Review ;

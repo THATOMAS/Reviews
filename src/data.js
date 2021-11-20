@@ -1,3 +1,4 @@
+import React from "react"
 
 const reviews = [
   {
@@ -38,4 +39,4 @@ const reviews = [
   },
 ];
 
-export default reviews;
+export default reviews ;
